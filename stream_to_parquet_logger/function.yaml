@@ -1,0 +1,93 @@
+kind: remote
+metadata:
+  name: stream-to-parquet-logger
+  tag: ''
+  hash: 2483641d6dd56a78b4f011a79fcb3082fd78cd01
+  project: default
+  labels:
+    author: michaelk
+  categories:
+  - serve
+  - stream
+spec:
+  command: ''
+  args: []
+  image: ''
+  entry_points:
+    init_context:
+      name: init_context
+      doc: ''
+      parameters:
+      - name: context
+        default: ''
+      outputs:
+      - default: ''
+      lineno: 9
+    handler:
+      name: handler
+      doc: ''
+      parameters:
+      - name: context
+        default: ''
+      - name: event
+        default: ''
+      outputs:
+      - default: ''
+      lineno: 33
+    flatten_inference_event:
+      name: flatten_inference_event
+      doc: ''
+      parameters:
+      - name: context
+        default: ''
+      - name: event
+        default: ''
+      outputs:
+      - default: ''
+      lineno: 57
+    add_time_partition_attributes:
+      name: add_time_partition_attributes
+      doc: ''
+      parameters:
+      - name: context
+        default: ''
+      - name: event
+        default: ''
+      outputs:
+      - default: ''
+      lineno: 67
+    write_batch:
+      name: write_batch
+      doc: ''
+      parameters:
+      - name: context
+        default: ''
+      outputs:
+      - default: ''
+      lineno: 81
+  description: Saves a stream to Parquet log
+  min_replicas: 1
+  max_replicas: 4
+  env: []
+  base_spec:
+    apiVersion: nuclio.io/v1
+    kind: Function
+    metadata:
+      annotations:
+        nuclio.io/generated_by: function generated from 08-10-2020 by michaelk
+      labels: {}
+      name: stream-to-parquet-logger
+    spec:
+      build:
+        baseImage: mlrun/ml-models
+        commands:
+        - python -m pip install pandas
+        - python -m pip install pyarrow
+        functionSourceCode: IyBHZW5lcmF0ZWQgYnkgbnVjbGlvLmV4cG9ydC5OdWNsaW9FeHBvcnRlcgoKaW1wb3J0IG9zCmltcG9ydCBwYW5kYXMgYXMgcGQKaW1wb3J0IGpzb24KaW1wb3J0IGRhdGV0aW1lCmZyb20gZGF0ZXRpbWUgaW1wb3J0IGRhdGV0aW1lCgpkZWYgaW5pdF9jb250ZXh0KGNvbnRleHQpOgogICAgc2V0YXR0cihjb250ZXh0LCAnYmF0Y2gnLCBbXSkKICAgIHNldGF0dHIoY29udGV4dCwgJ2JhdGNoX3NpemUnLCBpbnQob3MuZ2V0ZW52KCdCQVRDSF9TSVpFJywgMTAyNCkpKQoKICAgIHNldGF0dHIoY29udGV4dCwgJ3RpbWVzdGFtcF9rZXknLCBvcy5nZXRlbnYoJ1RTX0tFWScpKQogICAgc2V0YXR0cihjb250ZXh0LCAndGltZXN0YW1wX2Zvcm1hdCcsIG9zLmdldGVudignVFNfRk9STUFUJywgJyVZLSVtLSVkICVIOiVNOiVTLiVmJykpCgogICAgc2V0YXR0cihjb250ZXh0LCAncHFfcGFydGl0aW9ucycsIFsncHFfeWVhcicsICdwcV9tb250aCcsICdwcV9kYXknLCAncHFfaG91ciddKQoKICAgIHNldGF0dHIoY29udGV4dCwgJ3RhcmdldF9wYXRoJywgb3MuZ2V0ZW52KCdUQVJHRVRfUEFUSCcpKQogICAgb3MubWFrZWRpcnMoY29udGV4dC50YXJnZXRfcGF0aCwgZXhpc3Rfb2s9VHJ1ZSkKCiAgICBmZWF0dXJlcyA9IG9zLmdldGVudignRkVBVFVSRVMnKQogICAgaWYgZmVhdHVyZXMgaXMgbm90IE5vbmU6CiAgICAgICAgZmVhdHVyZXMgPSBmZWF0dXJlcy5zcGxpdCgnLCcpCiAgICBzZXRhdHRyKGNvbnRleHQsICdmZWF0dXJlcycsIGZlYXR1cmVzKQoKICAgIHByZWRpY3Rpb25zID0gb3MuZ2V0ZW52KCdQUkVESUNUSU9OUycpCiAgICBpZiBwcmVkaWN0aW9ucyBpcyBub3QgTm9uZToKICAgICAgICBwcmVkaWN0aW9ucyA9IHByZWRpY3Rpb25zLnNwbGl0KCcsJykKICAgIHNldGF0dHIoY29udGV4dCwgJ3ByZWRpY3Rpb25zJywgcHJlZGljdGlvbnMpCgogICAgcGFzcwoKZGVmIGhhbmRsZXIoY29udGV4dCwgZXZlbnQpOgogICAgaWYgdHlwZShldmVudC5ib2R5KSBpcyBkaWN0OgogICAgICAgIGV2ZW50X2RpY3QgPSBldmVudC5ib2R5CiAgICBlbHNlOgogICAgICAgIGV2ZW50X2RpY3QgPSBqc29uLmxvYWRzKGV2ZW50LmJvZHkpCgogICAgY29udGV4dC5sb2dnZXIuaW5mb193aXRoKCdHb3QgaW52b2tlZCcsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJpZ2dlcl9raW5kPWV2ZW50LnRyaWdnZXIua2luZCwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICBldmVudF9ib2R5PWV2ZW50X2RpY3QpCgogICAgaWYgY29udGV4dC5mZWF0dXJlcyBpcyBub3QgTm9uZSBhbmQgY29udGV4dC5wcmVkaWN0aW9ucyBpcyBub3QgTm9uZToKICAgICAgICBldmVudF9kaWN0ID0gZmxhdHRlbl9pbmZlcmVuY2VfZXZlbnQoY29udGV4dCwgZXZlbnRfZGljdCkKCiAgICBldmVudF93aXRoX3RpbWVfcGFydGl0aW9ucyA9IGFkZF90aW1lX3BhcnRpdGlvbl9hdHRyaWJ1dGVzKGNvbnRleHQsIGV2ZW50X2RpY3QpCgogICAgY29udGV4dC5iYXRjaC5hcHBlbmQoZXZlbnRfd2l0aF90aW1lX3BhcnRpdGlvbnMpCgogICAgaWYgY29udGV4dC5iYXRjaF9zaXplID09IGxlbihjb250ZXh0LmJhdGNoKToKICAgICAgICB3cml0dGVuX3JlY29yZHMgPSB3cml0ZV9iYXRjaChjb250ZXh0KQogICAgICAgIGNvbnRleHQubG9nZ2VyLmluZm9fd2l0aCgnV3JpdHRlbiBiYXRjaCcsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFdyaXR0ZW50X3JlY29yZHM9d3JpdHRlbl9yZWNvcmRzKQogICAgcGFzcwoKCmRlZiBmbGF0dGVuX2luZmVyZW5jZV9ldmVudChjb250ZXh0LCBldmVudCk6CiAgICBmZWF0dXJlX3ZhbHVlcyA9IGV2ZW50WydyZXF1ZXN0J11bJ2luc3RhbmNlcyddWzBdCiAgICBldmVudC51cGRhdGUoemlwKGNvbnRleHQuZmVhdHVyZXMsIGZlYXR1cmVfdmFsdWVzKSkKCiAgICBwcmVkaWN0aW9uX3ZhbHVlcyA9IGV2ZW50WydyZXNwJ10KICAgIGV2ZW50LnVwZGF0ZSh6aXAoY29udGV4dC5wcmVkaWN0aW9ucywgcHJlZGljdGlvbl92YWx1ZXMpKQogICAgCiAgICByZXR1cm4gZXZlbnQKCgpkZWYgYWRkX3RpbWVfcGFydGl0aW9uX2F0dHJpYnV0ZXMoY29udGV4dCwgZXZlbnQpOgogICAgaWYgaGFzYXR0cihjb250ZXh0LCAndGltZXN0YW1wX2tleScpIGFuZCBldmVudC5nZXQoY29udGV4dC50aW1lc3RhbXBfa2V5KSBpcyBub3QgTm9uZToKICAgICAgICBkdF9vYmplY3QgPSBkYXRldGltZS5zdHJwdGltZShldmVudFtjb250ZXh0LnRpbWVzdGFtcF9rZXldLCBjb250ZXh0LnRpbWVzdGFtcF9mb3JtYXQpCiAgICBlbHNlOgogICAgICAgIGR0X29iamVjdCA9IGRhdGV0aW1lLm5vdygpCgogICAgZXZlbnRbJ3BxX3llYXInXSA9IGR0X29iamVjdC5zdHJmdGltZSgnJVknKQogICAgZXZlbnRbJ3BxX21vbnRoJ10gPSBkdF9vYmplY3Quc3RyZnRpbWUoJyVtJykKICAgIGV2ZW50WydwcV9kYXknXSA9IGR0X29iamVjdC5zdHJmdGltZSgnJWQnKQogICAgZXZlbnRbJ3BxX2hvdXInXSA9IGR0X29iamVjdC5zdHJmdGltZSgnJUgnKQoKICAgIHJldHVybiBldmVudAoKCmRlZiB3cml0ZV9iYXRjaChjb250ZXh0KToKICAgIGRmID0gcGQuRGF0YUZyYW1lLmZyb21fcmVjb3Jkcyhjb250ZXh0LmJhdGNoKQogICAgZGYudG9fcGFycXVldChwYXRoPWNvbnRleHQudGFyZ2V0X3BhdGgsIHBhcnRpdGlvbl9jb2xzPWNvbnRleHQucHFfcGFydGl0aW9ucykKICAgIGNvbnRleHQuYmF0Y2ggPSBbXQogICAgcmV0dXJuIGxlbihkZi5pbmRleCkKCg==
+        noBaseImagesPull: true
+      env: []
+      handler: 6-stream-to-parquet-logger:handler
+      readinessTimeoutSeconds: 200
+      runtime: python:3.6
+      volumes: []
+  source: ''
